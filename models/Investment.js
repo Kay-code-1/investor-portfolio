@@ -5,7 +5,8 @@ class Investment extends Model {}
 
 Investment.init(
     {
-      id: {
+      //updated column name
+      investment_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
         primaryKey: true,
@@ -17,6 +18,11 @@ Investment.init(
         validate: {
             len: [1]
         }
+      },
+      //Symbol company name
+      symbol_name: {
+        type: DataTypes.STRING,
+        allowNull: false,
       },
       price: {
         type: DataTypes.DECIMAL,

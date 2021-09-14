@@ -4,8 +4,9 @@ const sequelize = require('../config/connection');
 class Portfolio extends Model {}
 
 Portfolio.init(
-    {
-        id: {
+    {   
+        //renamed column to portfolio_id as per index.js
+        portfolio_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
             primaryKey: true,
