@@ -8,6 +8,6 @@ User.hasOne(Portfolio, {
 
 Portfolio.belongsTo(User, {
   foreignKey: 'user_id'
-});
+}); 
 
 module.exports = { User, Portfolio };
