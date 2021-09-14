@@ -1,9 +1,10 @@
 const sequelize = require('../config/connection');
-const { User, Portfolio, Investment } = require('../models');
+const { User, Portfolio, Investment, Tickers } = require('../models');
 
 const userData = require('./userData.json');
 const portfolioData = require('./portfolioData.json');
 const investmentData = require('./investmentData.json');
+const tickerData = require('./tickerData.json');
 
 const seedDatabase = async () => {
     await sequelize.sync({ force: true });
@@ -19,6 +20,11 @@ const seedDatabase = async () => {
       });
 
     const investments = await Investment.bulkCreate(investmentData, {
+        individualHooks: false,
+        returning: true,
+      });
+
+    const tickers = await Tickers.bulkCreate(tickerData, {
         individualHooks: false,
         returning: true,
       });

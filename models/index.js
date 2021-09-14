@@ -1,6 +1,7 @@
 const User = require('./User');
 const Portfolio = require('./Portfolio');
 const Investment = require('./Investment');
+const Tickers = require('./Tickers');
 
 User.hasOne(Portfolio, {
   foreignKey: 'user_id',
@@ -17,4 +18,4 @@ Portfolio.hasMany(Investment, {
 });
 
 
-module.exports = { User, Portfolio, Investment };
+module.exports = { User, Portfolio, Investment, Tickers };
