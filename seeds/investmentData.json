@@ -1,0 +1,38 @@
+[
+    {
+        "symbol": "AAPL",
+        "price": 150,
+        "quantity": 10,
+        "portfolio_id": 1
+    },
+    {
+        "symbol": "IBM",
+        "price": 125,
+        "quantity": 5,
+        "portfolio_id": 1
+    },
+    {
+        "symbol": "CAT",
+        "price": 180,
+        "quantity": 8,
+        "portfolio_id": 1
+    },
+    {
+        "symbol": "TSLA",
+        "price": 700,
+        "quantity": 10,
+        "portfolio_id": 2
+    },
+    {
+        "symbol": "PFE",
+        "price": 40,
+        "quantity": 100,
+        "portfolio_id": 2
+    },
+    {
+        "symbol": "C",
+        "price": 75,
+        "quantity": 10,
+        "portfolio_id": 2
+    }
+]
