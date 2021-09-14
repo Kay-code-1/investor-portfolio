@@ -9,7 +9,7 @@ User.hasOne(Portfolio, {
 
 Portfolio.belongsTo(User, {
   foreignKey: 'user_id'
-});
+}); 
 
 Portfolio.hasMany(Investment, {
   foreignKey: 'portfolio_id',
