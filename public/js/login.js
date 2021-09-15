@@ -1,3 +1,4 @@
+//Login or signup functions
 const loginFormHandler = async (event) => {
   event.preventDefault();
 
@@ -21,6 +22,10 @@ const loginFormHandler = async (event) => {
     }
   }
 };
+
+document.getElementById("signup-btn").addEventListener("click", () => {
+  window.location = "signup";
+});
 
 document
   .getElementById("login-btn")
