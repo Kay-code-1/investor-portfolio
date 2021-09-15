@@ -1,6 +1,5 @@
 [
     {
-      "name": "Sal",
       "email": "sal@hotmail.com",
       "username": "salstock",
       "fname": "Sal",
@@ -8,7 +7,6 @@
       "password": "stocks123"
     },
     {
-        "name": "Amy",
         "email": "Amy@yahoo.com",
         "username": "amyinvestor",
         "fname": "Amy",
