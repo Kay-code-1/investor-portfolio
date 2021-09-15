@@ -13,7 +13,7 @@ router.post("/", async (req, res) => {
     });
 
     req.session.save(() => {
-      req.session.user_id = userData.user_id;
+      req.session.id = userData.user_id;
       req.session.logged_in = true;
 
       res.status(200).json(userData);
@@ -22,6 +22,14 @@ router.post("/", async (req, res) => {
     console.log(err);
     res.status(500).json(err);
   }
+
+  if (!dbUserData) {
+    res
+      .status(400)
+      .json({ message: "User profile not created" });
+    return;
+  }
+
 });
 
 // Login

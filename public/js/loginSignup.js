@@ -27,9 +27,9 @@ const loginFormHandler = async (event) => {
 const signupFormHandler = async (event) => {
   event.preventDefault();
 
-  const fname = document.getElementById("#firstName").value.trim();
-  const lname = document.getElementById("#lastName").value.trim();
-  const uname = document.getElementById("#userName").value.trim();
+  const fname = document.getElementById('#firstName').value.trim();
+  const lname = document.getElementById('#lastName').value.trim();
+  const uname = document.getElementById('#userName').value.trim();
   const email = document.querySelector("#emailAddress").value.trim();
   const password = document.querySelector("#password").value.trim();
 
@@ -48,9 +48,10 @@ const signupFormHandler = async (event) => {
   }
 };
 
-document.getElementById("signup-btn").addEventListener("click", () => {
-  window.location = "signup";
-});
+document
+    .querySelector('.signup-form')
+    .addEventListener('submit', signupFormHandler);
+
 
 document
   .getElementById("login-btn")
