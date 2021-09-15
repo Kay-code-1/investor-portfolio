@@ -14,6 +14,11 @@ const seedDatabase = async () => {
       returning: true,
     });
 
+    const tickers = await Tickers.bulkCreate(tickerData, {
+      individualHooks: false,
+      returning: true,
+    });
+
     const portfolios = await Portfolio.bulkCreate(portfolioData, {
         individualHooks: false,
         returning: true,
@@ -24,10 +29,7 @@ const seedDatabase = async () => {
         returning: true,
       });
 
-    const tickers = await Tickers.bulkCreate(tickerData, {
-        individualHooks: false,
-        returning: true,
-      });
+
 
       process.exit(0);
 }
