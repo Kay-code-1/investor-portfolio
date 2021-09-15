@@ -12,11 +12,18 @@ Portfolio.init(
             primaryKey: true,
             autoIncrement: true,
         },
+        portfolio_name: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                len: [6],
+            },
+        },
         user_id: {
             type: DataTypes.INTEGER,
             references: {
                 model: "user",
-                key: "id",
+                key: "user_id",
             },
         },
     },
