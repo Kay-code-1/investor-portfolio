@@ -5,8 +5,7 @@ class Portfolio extends Model {}
 
 Portfolio.init(
     {   
-        //renamed column to portfolio_id as per index.js
-        portfolio_id: {
+        id: {
             type: DataTypes.INTEGER,
             allowNull: false,
             primaryKey: true,
@@ -23,7 +22,7 @@ Portfolio.init(
             type: DataTypes.INTEGER,
             references: {
                 model: "user",
-                key: "user_id",
+                key: "id",
             },
         },
     },

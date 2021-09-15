@@ -1,44 +1,32 @@
 [
     {
-        "symbol": "AAPL",
-        "symbol_name": "Apple Inc",
-        "price": 150,
-        "quantity": 10,
-        "portfolio_id": 1
-    },
-    {
-        "symbol": "IBM",
-        "symbol_name": "International Business Machines Corp",
         "price": 125,
         "quantity": 5,
-        "portfolio_id": 1
+        "portfolio_id": 1,
+        "symbol_id": 1
     },
     {
-        "symbol": "CAT",
-        "symbol_name": "Caterpillar Inc",
         "price": 180,
         "quantity": 8,
-        "portfolio_id": 1
+        "portfolio_id": 1,
+        "symbol_id": 1
     },
     {
-        "symbol": "TSLA",
-        "symbol_name": "Tesla Inc",
         "price": 700,
         "quantity": 10,
-        "portfolio_id": 2
+        "portfolio_id": 2,
+        "symbol_id": 1
     },
     {
-        "symbol": "PFE",
-        "symbol_name": "Pfizer",
         "price": 40,
         "quantity": 100,
-        "portfolio_id": 2
+        "portfolio_id": 2,
+        "symbol_id": 2
     },
     {
-        "symbol": "C",
-        "symbol_name": "Citigroup",
         "price": 75,
         "quantity": 10,
-        "portfolio_id": 2
+        "portfolio_id": 2,
+        "symbol_id": 3
     }
 ]

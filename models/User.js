@@ -10,8 +10,7 @@ class User extends Model {
 
 User.init(
   {
-    // updated column name to user_id as per models/index.js
-    user_id: {
+    id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,

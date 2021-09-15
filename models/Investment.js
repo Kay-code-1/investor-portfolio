@@ -6,23 +6,11 @@ class Investment extends Model {}
 Investment.init(
   {
     //updated column name
-    investment_id: {
+    id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
       autoIncrement: true,
-    },
-    symbol: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        len: [1],
-      },
-    },
-    //Symbol company name
-    symbol_name: {
-      type: DataTypes.STRING,
-      allowNull: false,
     },
     price: {
       type: DataTypes.DECIMAL,
@@ -36,8 +24,15 @@ Investment.init(
       type: DataTypes.INTEGER,
       references: {
         model: "portfolio",
-        key: "portfolio_id",
+        key: "id",
       },
+    },
+    symbol_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: "tickers",
+        key: "id"
+      }
     },
   },
   {
