@@ -1,4 +1,6 @@
 const router = require("express").Router();
+const { request } = require("express");
+const bcrypt = require("bcrypt");
 const { User } = require("../../models");
 
 // CREATE new user
@@ -25,17 +27,37 @@ router.post("/", async (req, res) => {
   }
 
   if (!dbUserData) {
-    res
-      .status(400)
-      .json({ message: "User profile not created" });
+    res.status(400).json({ message: "User profile not created" });
     return;
   }
-
 });
 
 router.put("/", async (req, res) => {
-  // Update user data
-})
+  try {
+    let profileData = {
+      email: req.body.email,
+      username: req.body.username,
+      fname: req.body.fname,
+      lname: req.body.lname,
+    };
+
+    if (req.body.password) {      
+      profileData["password"] = req.body.password;
+    }
+
+    // to call before update hook
+    const profile = await User.findOne({
+      where: { id: req.session.user_id }
+    });
+    const updatedProfile = await profile.update(profileData);
+
+    console.log(updatedProfile);
+    res.status(200).json({ message: "Profile updated!" });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
 
 // Login
 router.post("/login", async (req, res) => {
@@ -60,7 +82,7 @@ router.post("/login", async (req, res) => {
         .status(400)
         .json({ message: "Incorrect username or password. Please try again!" });
       return;
-    } 
+    }
 
     console.log(dbUserData.id);
     req.session.save(() => {

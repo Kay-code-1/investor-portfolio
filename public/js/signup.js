@@ -16,7 +16,7 @@ const signupFormHandler = async (event) => {
 
     if (response.ok) {
       alert("profile created");
-      //document.location.replace("/createprofile");
+      window.location = "/";
     } else {
       alert(response.statusText);
     }
