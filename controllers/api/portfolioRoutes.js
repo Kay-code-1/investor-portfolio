@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Portfolio } = require("../../models");
+const { Portfolio, Tickers, Investment } = require("../../models");
 
 router.post("/portfolio", async (req, res) => {
     // TODO: Add logic to insert new portolio
@@ -23,12 +23,36 @@ router.post("/portfolio", async (req, res) => {
     // })    
 });
 
-router.get("/portfolio/:id", async (req, res) => {
-    // TODO: Add logic to get portolio by Id
-    // Below is a dummy response
-    res.status(200).json({
-        message: "Portfolio found!"
-    })    
+router.get("/:id", async (req, res) => {
+    try {
+    const portfolioData = await Portfolio.findByPk(req.params.id, {
+        include: [{ model: Investment,
+        attributes: [
+            "id",
+            "price",
+            "quantity",
+            "portfolio_id",
+        ],
+        include: [{ model: Tickers, 
+        attributes: [
+            "symbol",
+            "name"
+        ]}]
+    },
+] 
+});
+
+if (!portfolioData) {
+    res.status(404).json({ message: 'No portfolio found with this id!' });
+    return;
+  }
+else {
+  res.status(200).json(portfolioData);
+}
+} catch (err) {
+  res.status(500).json(err);
+  console.log(err);
+}
 });
 
 router.delete("/portfolio/:id", async (req, res) => {
