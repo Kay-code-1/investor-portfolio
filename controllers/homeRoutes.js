@@ -40,4 +40,30 @@ router.get("/signup", (req, res) => {
   res.render("signup");
 });
 
+//Get user profile and render
+router.get("/profile", withAuth, async (req, res) => {
+  try {
+    console.log(req.session.user_id, req.session.logged_in);
+    const userProfile = await User.findOne({
+      where: {
+        id: req.session.user_id,
+      },
+    });
+
+    if (!userProfile) {
+      res.status(404).json({ message: "User Profile not found!"});
+    }
+
+    const profile = userProfile.get({ plain: true });
+    console.log(profile)
+    res.render("profile", {
+      profile
+    });
+
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
 module.exports = router;

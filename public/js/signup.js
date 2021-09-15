@@ -3,19 +3,20 @@ const signupFormHandler = async (event) => {
 
   const fname = document.getElementById('firstName').value.trim();
   const lname = document.getElementById('lastName').value.trim();
-  const uname = document.getElementById('userName').value.trim();
+  const username = document.getElementById('userName').value.trim();
   const email = document.getElementById('email').value.trim();
   const password = document.getElementById('password').value.trim();
 
-  if (fname && lname && uname && email && password) {
+  if (fname && lname && username && email && password) {
     const response = await fetch("/api/users", {
       method: "POST",
-      body: JSON.stringify({ fname, lname, uname, email, password }),
+      body: JSON.stringify({ fname, lname, username, email, password }),
       headers: { "Content-Type": "application/json" },
     });
 
     if (response.ok) {
-      document.location.replace("/profile");
+      alert("profile created");
+      //document.location.replace("/createprofile");
     } else {
       alert(response.statusText);
     }

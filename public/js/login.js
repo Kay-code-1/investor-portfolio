@@ -23,6 +23,10 @@ const loginFormHandler = async (event) => {
   }
 };
 
+document.getElementById("signup-btn").addEventListener("click", () => {
+  window.location = "signup";
+});
+
 document
   .getElementById("login-btn")
   .addEventListener("click", loginFormHandler);

@@ -14,6 +14,7 @@ router.post("/", async (req, res) => {
 
     req.session.save(() => {
       req.session.id = userData.id;
+      req.session.user_id = userData.id;
       req.session.logged_in = true;
 
       res.status(200).json(userData);
@@ -31,6 +32,10 @@ router.post("/", async (req, res) => {
   }
 
 });
+
+router.put("/", async (req, res) => {
+  // Update user data
+})
 
 // Login
 router.post("/login", async (req, res) => {
@@ -55,9 +60,11 @@ router.post("/login", async (req, res) => {
         .status(400)
         .json({ message: "Incorrect username or password. Please try again!" });
       return;
-    }
+    } 
 
+    console.log(dbUserData.id);
     req.session.save(() => {
+      req.session.user_id = dbUserData.id;
       req.session.logged_in = true;
 
       res
