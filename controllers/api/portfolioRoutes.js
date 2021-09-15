@@ -3,10 +3,24 @@ const { Portfolio } = require("../../models");
 
 router.post("/portfolio", async (req, res) => {
     // TODO: Add logic to insert new portolio
+    try {
+        const portfolioData = await Portfolio.create({
+            portfolio_name: req.body.portfolio_name,
+            user_id: req.body.user_id,
+        });
+        req.session.save(() => {
+            req.session.portfolio_name = portfolioData.portfolio_name;
+            
+            res.status(200).json(portfolioData)
+        });
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err);
+    }
     // Below is a dummy response
-    res.status(201).json({
-        message: "Portfolio Created!"
-    })    
+    // res.status(201).json({
+    //     message: "Portfolio Created!"
+    // })    
 });
 
 router.get("/portfolio/:id", async (req, res) => {
