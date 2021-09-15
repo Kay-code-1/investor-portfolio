@@ -17,5 +17,15 @@ Portfolio.hasMany(Investment, {
   onDelete: 'CASCADE'
 });
 
+Tickers.hasMany(Investment, {
+  foreignKey: 'symbol_id',
+  onDelete: 'CASCADE'
+})
+
+Investment.belongsTo(Tickers, {
+  foreignKey: 'symbol_id',
+  onDelete: 'CASCADE'
+})
+
 
 module.exports = { User, Portfolio, Investment, Tickers };
