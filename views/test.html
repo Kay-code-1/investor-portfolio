@@ -25,27 +25,100 @@
                 <button id="name-portfolio" type="submit" class="btn btn-primary name-btn">Save <i class="icon-arrow-right"></i></button>
 
                 <button id="add-tickers" type="submit" class="btn btn-primary name-btn">Save <i class="icon-arrow-right"></i></button> -->
-
-                {{!-- Add portfolio details --}}
-                <div class="mt-1">
-                    <div class="form-group">
-                        <label for="lastName">Ticker Symbol</label>
-                        <input type="text" class="form-control" id="lastName" placeholder="Ticker Symbol">
+                <div class="add-portfolio container mt-3">
+                    <div class="addportfolio-form ">
+                        <div class="fonts-templ">
+                            {{!-- Name Portfolio --}}
+                            <h1>Create Portfolio</h1>
+                            <hr />
+                            <div class="form-group">
+                                <label for="portfolio name">Portfolio Name</label>
+                                <input type="text" class="form-control" id="portfolioName" placeholder="Enter Portfolio Name">
+                            </div>
+                            <button id="name-portfolio" type="submit" class="btn btn-primary name-btn">Save <i class="icon-arrow-right"></i></button>
+                            
+                            <button id="add-investment" type="submit" class="btn btn-primary name-btn">Add Investment<i class="icon-arrow-right"></i></button>
+                        </div>
                     </div>
-                     <div class="form-group">
-                        <label for="userName">User Name</label>
-                        <input type="text" class="form-control" id="userName" placeholder="Enter User Name">
-                    </div>
-                    <div class="form-group">
-                        <label for="emailAddress">Email address</label>
-                        <input type="email" class="form-control" id="email" placeholder="Enter Email address">
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" class="form-control" id="password" placeholder="Enter Password (min 6 characters)">
-                    </div>
-                    <button id="sign-up" type="submit" class="btn btn-primary signup-btn">Submit <i class="icon-arrow-right"></i></button>
                 </div>
+                {{!-- Add portfolio details --}}
+                {{! Add portfolio details }}
+                <div class="mt-1">
+                  <div class="form-group">
+                    <label for="ticker-symbol">Ticker Symbol</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="tickerSymbol"
+                      placeholder="Enter Ticker Symbol" readonly
+                    /> <button id="btn-lookup" type="button" class="btn btn-secondary">Lookup</button>
+                  </div>
+                  <div class="form-group">
+                    <label for="tickerName">Ticker Name</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="tickerName"
+                      placeholder="Select Ticker Name" readonly
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="quantity">Quantity</label>
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="quantity"
+                      placeholder="Enter purchase quanity"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="purchase-price">Purchase Price</label>
+                    <input
+                      type="number"
+                      step="0.01"
+                      class="form-control"
+                      id="purchasePrice"
+                      placeholder="Enter Purchase price"
+                    />
+                  </div>
+                  {{! get CMP - current-marketprice from third party API }}
+                  <div class="form-group">
+                    <label for="current-marketprice">Current Price</label>
+                    <input
+                      type="number"
+                      step="0.01"
+                      class="form-control"
+                      id="cmarketPrice"
+                      placeholder="Current Market price"
+                    />
+                  </div>
+                  {{! Ticker-based Valuation: Profit/ Loss }}
+                  <div class="form-group">
+                    <label for="gain-loss">Gain/ Loss</label>
+                    <input
+                      type="number"
+                      step="0.01"
+                      class="form-control"
+                      id="gainLoss"
+                      placeholder="Gain/ Loss"
+                    />
+                  </div>
+                
+                  <button id="sign-up" type="submit" class="btn btn-primary signup-btn">Submit
+                    <i class="icon-arrow-right"></i></button>
+                </div>
+                
+                <!-- The Modal -->
+                <div id="myModal" class="modal">
+                
+                  <!-- Modal content -->
+                  <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <p>Some text in the Modal..</p>
+                  </div>
+                
+                </div>
+                
             </div>
         </div>
     
