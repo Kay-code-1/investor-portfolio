@@ -24,6 +24,7 @@ router.post("/", async (req, res) => {
 
 });
 
+//get Ticker symbol and name
 router.get("/:id", async (req, res) => {
     try {
         const investmentData = await Investment.findByPk(req.params.id, {
