@@ -20,6 +20,10 @@ Investment.init(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
+    purchase_date: {
+      type: DataTypes.DATEONLY,
+      allowNull: false
+    },
     portfolio_id: {
       type: DataTypes.INTEGER,
       references: {

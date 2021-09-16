@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const { Portfolio, User } = require("../models");
 const withAuth = require("../utils/auth");
+const session = require("express-session");
 
 //TODO: Fix the landing page
 router.get("/", withAuth, async (req, res) => {
@@ -27,9 +28,32 @@ router.get("/", withAuth, async (req, res) => {
   }
 });
 
-// router.get("/portfolio", withAuth, async (req, res) => {
+router.get("/portfolio", withAuth, async (req, res) => {
+    try {
+    console.log(req.session.portfolio_id, req.session.logged_in);
+    const userPortfolio = await Portfolio.findOne({
+      where: {
+        id: req.session.portfolio_id,
+      },
+    });
 
-// })
+    if (!userPortfolio) {
+      res.status(404).json({ message: "User Portfolio not found!"});
+    }
+
+    const portfolio = userPortfolio.get({ plain: true });
+    console.log(portfolio)
+    res.render("portfolio", {
+      portfolio
+    });
+
+    }
+    catch (err) {
+      console.log(err);
+      res.status(500).json(err);
+    }
+})
+
 
 router.get("/login", (req, res) => {
   if (req.session.logged_in) {
