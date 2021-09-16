@@ -1,29 +1,69 @@
 const router = require('express').Router();
-const { Investment } = require("../../models");
+const { Investment, Portfolio, Tickers } = require("../../models");
 
-router.post("/investment", async (req, res) => {
-    // TODO: Add logic to insert new ticker to investment mapped to a portfolio
-    // Below is a dummy response
-    res.status(201).json({
-        message: "Ticker added!"
-    })    
+router.post("/", async (req, res) => {
+try {
+    const investmentData = await Investment.create({
+        price: req.body.price,
+        quantity: req.body.quantity,
+        portfolio_id: req.body.portfolio_id,
+        symbol_id: req.body.symbol_id,
+    });
+    
+    res.status(200).json({message: "Investment added!"});
+}
+catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+}   
+        
 });
 
-router.get("/portfolio/:portfolioId/investment", async (req, res) => {
-    // TODO: Add logic to get list of investments by Portfolio Id
-    // Below is a dummy response
+router.get("/:id", async (req, res) => {
+    try {
+        const investmentData = await Investment.findByPk(req.params.id, {
+            include: [
+                {
+                    model: Tickers,
+                    attributes: [
+                        "symbol",
+                        "name"
+                    ]
+                }]
+        });
+        if (!investmentData) {
+            res.status(400).json({ message: 'No investment with this id' });
+            return;
+        }
+        console.log(investmentData);
+        res.status(200).json(investmentData);
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err);
+    }
     res.status(200).json({
         message: "Ticker found!"
     })    
 });
 
-router.delete("/portfolio/:portfoliId/investment/:id", async (req, res) => {
-    // TODO: Add logic to delete portolio by Id. 
-    // Also ensure that underlying ref links to investment are also deleted.
-    // Below is a dummy response
-    res.status(200).json({
-        message: "Ticker deleted!"
-    })    
+router.delete("/:id", async (req, res) => {
+    try {
+        const removeInvestment = await Investment.destroy({
+            where: {
+                id: req.params.id
+            }
+        });
+
+        if (!removeInvestment) {
+            res.status(404).json({ message: "No investment found with that ID"});
+            return;
+        }
+        res.status(200).json({ message: "Investment has been removed"});
+    }
+    catch (err) {
+        res.status(500).json(err);
+        console.log(err);
+    }
 });
 
 module.exports = router;
