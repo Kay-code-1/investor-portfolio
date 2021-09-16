@@ -1,0 +1,11 @@
+<h1>Portfolio Details</h1>
+
+<section>
+    Portfolio Name: {{portfolio.portfolio_name}}
+</section>
+<hr>
+<button id="add-investment" type="submit" class="btn btn-primary name-btn">Add Investment<i class="icon-arrow-right"></i></button>
+<div id="investment-form" style="display: none;">
+    {{> add-investment}}
+</div>
+<script src="/js/portfolio.js"></script>

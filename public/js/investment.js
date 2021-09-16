@@ -1,4 +1,4 @@
-document.getElementById("btn-lookup").addEventListener("click", () => {
+document.getElementById("symbol-lookup").addEventListener("click", () => {
   var modal = document.getElementById("myModal");
   modal.style.display = "block";
 });
