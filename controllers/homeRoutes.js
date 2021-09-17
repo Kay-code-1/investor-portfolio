@@ -42,7 +42,7 @@ router.get("/portfolio/:id", withAuth, async (req, res) => {
         },
       });
 
-      // TODO: fetch investment for the given portfolio id
+      //fetch investment for the given portfolio id
 
       if (!userPortfolio) {
         res.status(404).json({ message: "User Portfolio not found!" });
