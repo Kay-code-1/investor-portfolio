@@ -1,3 +1,16 @@
 <h1>
     Welcome to Investor Center!
 </h1>
+
+<div class="container">
+    <h2>Your Portfolios</h2>
+    {{#each portfolios as |portfolio|}}
+    {{> portfolio-details}}
+    {{/each}}
+</div>
+
+<hr>
+
+<button id="create-portfolio" type="button" class="btn btn-primary">Create Portfolio</button>
+
+<script src="./js/home.js"></script>

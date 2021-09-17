@@ -1,25 +1,23 @@
 const router = require("express").Router();
 const { Portfolio, User } = require("../models");
 const withAuth = require("../utils/auth");
+const session = require("express-session");
 
 //TODO: Fix the landing page
 router.get("/", withAuth, async (req, res) => {
   try {
-    // const portfolioData = await Portfolio.findAll({
-    //   include: [
-    //     {
-    //       model: User,
-    //       attributes: ["name"],
-    //     },
-    //   ],
-    // });
+    const portfolioData = await Portfolio.findAll({
+      where: {
+        user_id: req.session.user_id,
+      },
+    });
 
-    // const portfolio = portfolioData.map((portfolio) =>
-    //   portfolio.get({ plain: true })
-    // );
+    const portfolios = portfolioData.map((portfolio) =>
+      portfolio.get({ plain: true })
+    );
 
     res.render("homepage", {
-      // portfolio,
+      portfolios,
       logged_in: req.session.logged_in,
     });
   } catch (err) {
@@ -27,9 +25,40 @@ router.get("/", withAuth, async (req, res) => {
   }
 });
 
-// router.get("/portfolio", withAuth, async (req, res) => {
+router.get("/portfolio", withAuth, async (req, res) => {
+  try {
+    res.render("createPortfolio");
+  } catch (error) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
 
-// })
+router.get("/portfolio/:id", withAuth, async (req, res) => {
+  try {
+      const userPortfolio = await Portfolio.findOne({
+        where: {
+          id: req.params.id,
+        },
+      });
+
+      // TODO: fetch investment for the given portfolio id
+
+      if (!userPortfolio) {
+        res.status(404).json({ message: "User Portfolio not found!" });
+      }
+
+      const portfolio = userPortfolio.get({ plain: true });
+      console.log(portfolio);
+      res.render("portfolio", {
+        portfolio
+      });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
 
 router.get("/login", (req, res) => {
   if (req.session.logged_in) {
@@ -55,15 +84,14 @@ router.get("/profile", withAuth, async (req, res) => {
     });
 
     if (!userProfile) {
-      res.status(404).json({ message: "User Profile not found!"});
+      res.status(404).json({ message: "User Profile not found!" });
     }
 
     const profile = userProfile.get({ plain: true });
-    console.log(profile)
+    console.log(profile);
     res.render("profile", {
-      profile
+      profile,
     });
-
   } catch (err) {
     console.log(err);
     res.status(500).json(err);

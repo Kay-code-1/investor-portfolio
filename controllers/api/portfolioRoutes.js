@@ -1,18 +1,16 @@
 const router = require('express').Router();
-const sequelize = require('../../config/connection');
 const { Portfolio, User, Investment, Tickers } = require("../../models");
+const withAuth = require("../../utils/auth");
 
-router.post("/", async (req, res) => {
+router.post("/", withAuth, async (req, res) => {
     try {
         const portfolioData = await Portfolio.create({
-            portfolio_name: req.body.portfolio_name,
-            user_id: req.body.user_id,
+            portfolio_name: req.body.portfolioName,
+            //look into sending user ID from sessions
+            user_id: req.session.user_id
         });
-        req.session.save(() => {
-            req.session.portfolio_name = portfolioData.portfolio_name;
 
-            res.status(200).json(portfolioData)
-        });
+        res.status(201).json(portfolioData);
     } catch (err) {
         console.log(err);
         res.status(500).json(err);
