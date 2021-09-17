@@ -24,7 +24,17 @@ function createChart(data) {
     const config = {
         type: "line",
         data: inputs,
-        options: {}
+        options: {
+            plugins: {
+                legend: {
+                    labels: {
+                        font: {
+                            size: 24
+                        }
+                    }
+                }
+            }
+        }
     };
 
     var myChart = new Chart(
@@ -36,7 +46,6 @@ function createChart(data) {
 async function getMarketData() {
     const apiKeyResponse = await fetch("/api/marketdata");
     const apiKey = await apiKeyResponse.json();
-    console.log(apiKey);
 
     const response = await fetch(`http://api.marketstack.com/v1/eod?access_key=${apiKey}&symbols=DJI.INDX`);
     if (response.status !== 200) {
