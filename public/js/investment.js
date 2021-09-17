@@ -4,6 +4,7 @@ document.getElementById("symbol-lookup").addEventListener("click", () => {
 });
 
 document.getElementById("btn-lookup").addEventListener("click", async () => {
+  //fetch ticker from View
   var ticker = document.getElementById("ticker-symbol");
 
   console.log(ticker.value);
@@ -99,7 +100,6 @@ const setPurchasePrice = async () => {
 };
 
 //Save investment details for user portfolio
-
 const saveInvestmentFormHandler = async (event) => {
   event.preventDefault();
 
@@ -125,29 +125,35 @@ const saveInvestmentFormHandler = async (event) => {
     let result = await response.json();
     console.log(result);
 
-    const invRows = document.getElementById("investment-list-rows");
-    response = await fetch("/api/portfolio/" + portfolioId, {
-      method: "GET",
-    });
+    // const invRows = document.getElementById("investment-list-rows");
+    // response = await fetch("/api/portfolio/" + portfolioId, {
+    //   method: "GET",
+    // });
 
-    if (response.ok) {
-      invRows.innerHTML = "";
-      result = await response.json();
+    // if (response.ok) {
+    //   invRows.innerHTML = "";
+    //   result = await response.json();
 
-      const investments = result.investments.map((inv) => {
-        const total = inv.price * inv.quantity
-        return `<tr>
-        <td>${inv.ticker.symbol}</td>
-        <td>${inv.ticker.name}</td>
-        <td>${inv.quantity}</td>
-        <td>${inv.price.toFixed(2)}</td>
-        <td>${total.toFixed(2)}</td>
-      </tr>`;
-      });
+    //   const investments = result.investments.map((inv) => {
+    //     const total = inv.price * inv.quantity
+    //     return `<tr>
+    //     <td>${inv.ticker.symbol}</td>
+    //     <td>${inv.ticker.name}</td>
+    //     <td>${inv.quantity}</td>
+    //     <td>${inv.price.toFixed(2)}</td>
+    //     <td>${total.toFixed(2)}</td>
+    //     <td>
+    //       <button type="button" class="btn btn-danger" onclick="deleteInvestmentsHandler('${inv.id}')">
+    //         <i class="fas fa-trash-alt"></i>
+    //       </button></td>
+    //   </tr>`;
+    //   });
 
-      invRows.innerHTML = investments.join("");
-      document.getElementById("investment-form").style.display = "none";
-    }
+    //   invRows.innerHTML = investments.join("");
+      
+    // }
+    loadInvestments();
+    document.getElementById("investment-form").style.display = "none";
   } else {
     alert(response.statusText);
   }
@@ -155,3 +161,9 @@ const saveInvestmentFormHandler = async (event) => {
 document
   .getElementById("save-investment")
   .addEventListener("click", saveInvestmentFormHandler);
+
+document.getElementById("cancel-form")
+.addEventListener("click", () => {
+    document.getElementById("investment-form").style.display = "none";
+    document.getElementById("investment-list").style.display = "block";
+})

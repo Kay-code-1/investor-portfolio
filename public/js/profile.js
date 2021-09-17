@@ -1,3 +1,4 @@
+//View and Edit profile
 const profileFormHandler = async (event) => {
     event.preventDefault();
 
