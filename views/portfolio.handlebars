@@ -5,6 +5,19 @@
 </section>
 <hr>
 <button id="add-investment" type="submit" class="btn btn-primary name-btn">Add Investment<i class="icon-arrow-right"></i></button>
+<table class="table" id="investment-list">
+    <thead>
+        <tr>
+            <th>Symbol</th>
+            <th>Name</th>
+            <th>Quantity</th>
+            <th>Purchase Price</th>
+            <th>Total Value</th>
+        </tr>
+    </thead>
+    <tbody id="investment-list-rows">
+    </tbody>
+</table>
 <div id="investment-form" style="display: none;">
     {{> add-investment}}
 </div>
