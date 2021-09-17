@@ -3,7 +3,7 @@ const { Portfolio, User } = require("../models");
 const withAuth = require("../utils/auth");
 const session = require("express-session");
 
-//TODO: Fix the landing page
+//Fix the landing page
 router.get("/", withAuth, async (req, res) => {
   try {
     const portfolioData = await Portfolio.findAll({

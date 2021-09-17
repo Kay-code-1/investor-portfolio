@@ -7,11 +7,13 @@ const {
 
 router.post("/", async (req, res) => {
     try {
+        console.log(req.body);
         const investmentData = await Investment.create({
             price: req.body.price,
             quantity: req.body.quantity,
             portfolio_id: req.body.portfolio_id,
             symbol_id: req.body.symbol_id,
+            purchase_date: req.body.purchase_date
         });
 
         res.status(200).json({
