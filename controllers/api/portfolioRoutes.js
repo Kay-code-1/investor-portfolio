@@ -51,6 +51,21 @@ router.get("/:id", async (req, res) => {
     }
 });
 
+router.put('/:id', async (req, res) => {
+    const portfolioData = await Portfolio.update(
+      {
+        portfolio_name: req.body.portfolio_name,
+      },
+      {
+        where: {
+          id: req.params.id,
+        },
+      }
+    );
+  
+    return res.json(portfolioData);
+  });
+
 router.delete("/:id", async (req, res) => {
     try {
     const removePortfolio = await Portfolio.destroy({
