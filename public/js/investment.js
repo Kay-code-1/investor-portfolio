@@ -68,6 +68,14 @@ const setData = async (id, symbol, name) => {
   modal.style.display = "none";
 };
 
+function calculate() {
+  const quantity = document.getElementById("quantity").value;
+  const purchPrice = document.getElementById("purchasePrice").value;
+  const curPrice = document.getElementById("cmarketPrice").value;
+  const result = document.getElementById("gainLoss");
+  const myResult = (curPrice - purchPrice) * quantity;
+  result.value = myResult;
+}
 const setPurchasePrice = async () => {
   const tickerSymbol = document.getElementById("tickerSymbol");
   //Add purchase price from third party API - polygon
