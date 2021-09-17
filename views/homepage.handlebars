@@ -8,6 +8,7 @@
     <h2>Your Portfolios</h2>
     {{#each portfolios as |portfolio|}}
     {{> portfolio-details}}
+    <button id="delete-portfolio" type="button" class="btn-danger btn"><i class="fas fa-trash-alt"></i></button>
     {{/each}}
 </div>
 
@@ -15,8 +16,6 @@
 <hr>
 
 <button id="create-portfolio" type="button" class="btn btn-primary">Create Portfolio</button>
-<hr>
-<button id="delete-portfolio" type="button" class="btn btn-primary">Delete Portfolio</button>
 
 <div id="chart" class="w-75 pt-5 justify-center">
     <canvas id="myChart"></canvas>
