@@ -27,7 +27,9 @@ router.get("/", withAuth, async (req, res) => {
 
 router.get("/portfolio", withAuth, async (req, res) => {
   try {
-    res.render("createPortfolio");
+    res.render("createPortfolio", {
+      logged_in: req.session.logged_in
+    });
   } catch (error) {
     console.log(err);
     res.status(500).json(err);
@@ -51,7 +53,8 @@ router.get("/portfolio/:id", withAuth, async (req, res) => {
       const portfolio = userPortfolio.get({ plain: true });
       console.log(portfolio);
       res.render("portfolio", {
-        portfolio
+        portfolio,
+        logged_in: req.session.logged_in,
       });
   } catch (err) {
     console.log(err);

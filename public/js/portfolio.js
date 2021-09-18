@@ -1,6 +1,7 @@
 const addInvestmentHandler = () => {
     document.getElementById("investment-form").style.display = "block";
     document.getElementById("investment-list").style.display = "none";
+    document.getElementById("add-investment").style.display = "none";
 } 
 
 document
