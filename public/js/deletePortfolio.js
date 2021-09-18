@@ -1,9 +1,10 @@
+//IN PROGRESS
 const deletePortfolioHandler = async (event) => {
-    event.preventDefault();
+    
   
-    const portfolioID = document.getElementById('').value.trim();
+    const checkedDelete = document.querySelector('#deleteBtn:checked') ? true : false;
       
-    if (portfolioID) {
+    if (checkedDelete) {
       const response = await fetch("/api/portfolio/" + id, {
         method: "DELETE",
       });
@@ -18,5 +19,5 @@ const deletePortfolioHandler = async (event) => {
 }
 
 document
-.getElementById('delete-portfolio')
-.addEventListener('click', deletePortfolioHandler);
+.querySelector('delete-btn-form')
+.addEventListener('submit', deletePortfolioHandler);

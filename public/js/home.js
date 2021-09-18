@@ -61,5 +61,12 @@ document.getElementById("create-portfolio")
     .addEventListener("click", () => {
         window.location = "/portfolio"
     })
+    getMarketData();
 
-getMarketData();
+//IN PROGRESS
+document.getElementById("delete-portfolio")
+    .addEventListener("click", () => {
+        console.log('hello')
+        deletePortfolioHandler();
+    })
+
