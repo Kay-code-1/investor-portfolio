@@ -4,7 +4,7 @@ const deletePortfolioHandler = async (event) => {
     const portfolioID = document.getElementById('').value.trim();
       
     if (portfolioID) {
-      const response = await fetch("/api/portfolio/:id", {
+      const response = await fetch("/api/portfolio/" + id, {
         method: "DELETE",
       });
   
