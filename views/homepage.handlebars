@@ -8,10 +8,12 @@
 
 <div class="container">
     <h2>Your Portfolios</h2>
+    <div class="row">
     {{#each portfolios as |portfolio|}}
     {{> portfolio-details}}
     <button id="delete-portfolio" type="button" class="btn-danger btn"><i class="fas fa-trash-alt"></i></button>
     {{/each}}
+    </div>    
 </div>
 
 
