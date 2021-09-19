@@ -51,3 +51,8 @@
 #ticker-symbol {
   width: 200px;
 }
+
+#delete-portfolio {
+  cursor: pointer;
+}
+

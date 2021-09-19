@@ -1,43 +1,27 @@
-<div class="mb-5 mt-3">
-    <h1>
-        Welcome to Investor Center!
-    </h1>
+<div class="d-flex">
+    <div class="d-flex flex-column justify-content-center w-50">
+        <div class="mb-5 mt-3">
+            <h1>
+                Welcome to Investor Center!
+            </h1>
+        </div>
+
+        <div class="container">
+            <h2>Your Portfolios</h2>
+            <div class="row">
+            {{#each portfolios as |portfolio|}}
+            {{> portfolio-details}}
+            {{/each}}
+            </div>    
+        </div>
+
+        <button id="create-portfolio" type="button" class="btn btn-primary">Create Portfolio</button>
+    </div>
+    <div id="chart" class="w-50 pl-4 d-flex justify-content-center align-items-end">
+        <canvas id="myChart"></canvas>
+    </div>  
 </div>
 
-
-
-<div class="container">
-    <h2>Your Portfolios</h2>
-    <div class="row">
-    {{#each portfolios as |portfolio|}}
-    {{> portfolio-details}}
-    {{!-- IN PROGRESS: this form is for user to check box then delete on specific portfolio --}}
-    <form id="delete-portfolio" class="delete-btn-form">
-        <input type='checkbox' id='deleteBtn' name='deleteBtn' value='true' />
-        <label for='deleteBtn'>
-        DELETE
-        </label>
-        <br />
-        <button id="delete-portfolio" class="btn-danger btn" type='submit' value='delete'>
-            <i class="fas fa-trash-alt"></i>
-        </button>
-        
-    </form>
-    {{!-- <button id="delete-portfolio" type="button" class="btn-danger btn"><i class="fas fa-trash-alt"></i></button> --}}
-    {{/each}}
-    </div>    
-</div>
-
-
-<hr>
-
-<button id="create-portfolio" type="button" class="btn btn-primary">Create Portfolio</button>
-
-
-<div id="chart" class="w-75 pt-5 container">
-    <canvas id="myChart" class="justify-content-center"></canvas>
-</div>
 
 <script src="./js/home.js"></script>
-<script src="./js/deletePortfolio.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
