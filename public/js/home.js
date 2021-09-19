@@ -44,22 +44,22 @@ function createChart(data) {
 };
 
 async function getMarketData() {
-    const apiKeyResponse = await fetch("/api/marketdata");
-    const apiKey = await apiKeyResponse.json();
+    const marketData = await fetch("/api/marketdata");
+    const marketDataJson = await marketData.json();
 
-    const response = await fetch(`http://api.marketstack.com/v1/eod?access_key=${apiKey}&symbols=DJI.INDX`);
-    if (response.status !== 200) {
-        return await response.json({message: "Link not available"});
-    }
-    else {
-        const responseData = await response.json();
-        createChart(responseData);
-    }
+    createChart(marketDataJson);
 }
 
 document.getElementById("create-portfolio")
     .addEventListener("click", () => {
         window.location = "/portfolio"
     })
+    getMarketData();
 
-getMarketData();
+//IN PROGRESS
+document.getElementById("delete-portfolio")
+    .addEventListener("click", () => {
+        console.log('hello')
+        deletePortfolioHandler();
+    })
+
