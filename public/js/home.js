@@ -47,7 +47,7 @@ async function getMarketData() {
     const apiKeyResponse = await fetch("/api/marketdata");
     const apiKey = await apiKeyResponse.json();
 
-    const response = await fetch(`http://api.marketstack.com/v1/eod?access_key=${apiKey}&symbols=DJI.INDX`);
+    const response = await fetch(apiKey);
     if (response.status !== 200) {
         return await response.json({message: "Link not available"});
     }
