@@ -52,10 +52,7 @@
   width: 200px;
 }
 
-body {
-    background-image: url('https://images.pexels.com/photos/5562086/pexels-photo-5562086.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: center;
+#delete-portfolio {
+  cursor: pointer;
 }
 
