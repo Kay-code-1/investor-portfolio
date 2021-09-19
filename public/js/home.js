@@ -44,17 +44,10 @@ function createChart(data) {
 };
 
 async function getMarketData() {
-    const apiKeyResponse = await fetch("/api/marketdata");
-    const apiKey = await apiKeyResponse.json();
+    const marketData = await fetch("/api/marketdata");
+    const marketDataJson = await marketData.json();
 
-    const response = await fetch(apiKey);
-    if (response.status !== 200) {
-        return await response.json({message: "Link not available"});
-    }
-    else {
-        const responseData = await response.json();
-        createChart(responseData);
-    }
+    createChart(marketDataJson);
 }
 
 document.getElementById("create-portfolio")
