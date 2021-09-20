@@ -9,6 +9,12 @@ const profileFormHandler = async (event) => {
     const password = document.getElementById('password').value.trim();
   
     if (fname || lname || username || email || password) {
+      let body = {};
+      if (password.length) {
+        body = { fname, lname, username, email, password }
+      } else {
+        body = { fname, lname, username, email }
+      }
       const response = await fetch("/api/users", {
         method: "PUT",
         body: JSON.stringify({ fname, lname, username, email, password }),
