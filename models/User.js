@@ -19,7 +19,7 @@ User.init(
     email: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
+      unique: 'email',
       validate: {
         isEmail: true,
       },
@@ -27,7 +27,7 @@ User.init(
     username: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
+      unique: 'username',
     },
     fname: {
       type: DataTypes.STRING,
@@ -52,10 +52,12 @@ User.init(
         return newUserData;
       },
       beforeUpdate: async (updatedUserData) => {
-        updatedUserData.password = await bcrypt.hash(
-          updatedUserData.password,
-          10
-        );
+        if (updatedUserData.password.length) {        
+          updatedUserData.password = await bcrypt.hash(
+            updatedUserData.password,
+            10
+          );
+        }
         return updatedUserData;
       },
     },

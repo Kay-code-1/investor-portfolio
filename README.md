@@ -5,7 +5,7 @@
 
   # Description
   
-  A full stack application which allows users to login and managage portfolios of stocks.
+  A full stack application which allows users to login and manage portfolios of stocks.
   
   # Table of Contents
   * [Authors](#authors)
@@ -28,8 +28,7 @@
   Copy and paste 
   
   
-      npm i axios
-            bcrypt
+      npm i bcrypt
             chart.js
             connect-session-sequelize
             dotenv
